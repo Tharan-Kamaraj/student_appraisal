@@ -1,0 +1,70 @@
+/* College brand variables */
+:root{
+  --brand-primary: #002b7f; /* MKCE deep blue */
+  --brand-secondary: #0d6efd; /* Bootstrap primary */
+  --brand-accent: #ffc107; /* Accent */
+  --bs-primary: var(--brand-primary);
+}
+
+body { background: #f6f8fb; }
+.hero-bg, body { font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.sas-navbar { background: linear-gradient(90deg,#002b7f,#0d6efd); }
+.card { border: 0; }
+.card .card-header { border-bottom: 1px solid #eef2f7; }
+h6 { color: #0d6efd; }
+
+/* Buttons align to brand */
+.btn-primary { --bs-btn-bg: var(--brand-primary); --bs-btn-border-color: var(--brand-primary); --bs-btn-hover-bg: #003aa8; --bs-btn-hover-border-color: #003aa8; }
+.btn-success { --bs-btn-bg: #198754; }
+.btn-outline-primary { --bs-btn-color: var(--brand-primary); --bs-btn-border-color: var(--brand-primary); --bs-btn-hover-bg: var(--brand-primary); --bs-btn-hover-border-color: var(--brand-primary); }
+
+/* Report helpers */
+.report-header { border-bottom: 2px solid #0d6efd; }
+.small-text { font-size: 0.9rem; }
+.report-watermark { position: relative; }
+.report-watermark::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: url('/student-appraisal/assets/images/logo.png') no-repeat center center;
+  background-size: 240px 240px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Print: hide navbar and footer, remove paddings for compact PDF/print */
+@media print {
+  .navbar, footer, .d-print-none { display: none !important; }
+  .container { width: 100% !important; max-width: none !important; padding: 0 24px !important; }
+}
+
+/* Background pattern and animations */
+.hero-bg {
+  background-image: url('/student-appraisal/assets/images/bg-pattern.svg');
+  background-size: 240px 240px;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+.hero-bg::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: linear-gradient(120deg, rgba(13,110,253,0.06), rgba(0,43,127,0.06));
+  animation: hueShift 12s linear infinite;
+  pointer-events: none;
+}
+.hero-bg::after {
+  content: "";
+  position: fixed; inset: -10% -10% auto -10%; height: 40vh;
+  background: radial-gradient(600px 200px at 10% 40%, rgba(13,110,253,0.12), transparent),
+              radial-gradient(500px 180px at 80% 60%, rgba(0,43,127,0.10), transparent);
+  filter: blur(20px);
+  animation: floatBg 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes hueShift { 0%{ filter: hue-rotate(0deg);} 100%{ filter: hue-rotate(10deg);} }
+@keyframes floatBg { 0%{ transform: translateY(0);} 100%{ transform: translateY(12px);} }
+
+/* Floating shape utility (optional use via class .float) */
+.float { animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} 100%{ transform: translateY(0);} }
